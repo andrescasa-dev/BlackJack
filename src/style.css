@@ -1,0 +1,22 @@
+.container{
+  grid-template-areas: 
+  ". diller ."
+  "bot deck bot"
+  "player player player"
+}
+
+.player{
+  grid-area: player;
+}
+
+.diller{
+  grid-area: diller;
+}
+
+.deck{
+  grid-area: deck;
+}
+
+.bot{
+  grid-area: bot;
+}
