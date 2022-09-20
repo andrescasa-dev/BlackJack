@@ -9,12 +9,47 @@
   <link rel="stylesheet" href="style.css">
   <title>BlackJack</title>
 </head>
-<body class="container grid grid-cols-3 h-screen w-sreen grid-rows-3 bg-indigo-900">
-  <div class=" bg-red-800 w-8 h-8"></div>
-  <div class="diller bg-red-800 w-8 h-8"></div>
-  <div class="deck bg-red-800 w-8 h-8"></div>
-  <div class="bot bg-red-800 w-8 h-8"></div>
-  <div class="bot bg-red-800 w-8 h-8"></div>
-  <div class="player bg-red-800 w-8 h-8"></div>
+<body id="container" class="container grid grid-cols-3 grid-rows-3 h-screen bg-indigo-900 text-white font-sans text-4xl">
+  <div class="area flex gap-4 border border-yellow-400" style="--area: dealer">
+    <div id="dealer" class="grow grid dealer_areas">
+      <div class="flex md:flex-col lg:flex-row-reverse gap-2 justify-center items-center area" style="--area: cards">
+        <div class="bg-red-400">
+          <span>20</span>
+        </div>
+        <div class="cards flex flex-row-reverse justify-center " >
+          <div class="w-32 border">
+            <img class="rounded-lg" src="https://deckofcardsapi.com/static/img/2S.png"></img>
+          </div>
+          <div class="w-32 border mr-[-6.5rem]">
+            <img class="rounded-lg" src="https://deckofcardsapi.com/static/img/2S.png"></img>
+          </div>
+        </div>
+      </div>
+      <div class="chips flex justify-center w-full bg-green-400 area" style="--area: chips">
+        <div class="flex justify-center">
+          <div class=" w-10 h-10 rounded-full bg-gray-400">
+            <img src="../assets/chip.png" alt="">
+          </div>
+          <div class="ml-[-3.5rem] w-10 h-10 rounded-full bg-gray-400">
+            <img src="../assets/chip.png" alt="">
+          </div>
+          <div class="ml-[-3.5rem] w-10 h-10 rounded-full bg-gray-400">
+            <img src="../assets/chip.png" alt="">
+          </div>
+          <div class="ml-[-3.5rem] w-10 h-10 rounded-full bg-gray-400">
+            <img src="../assets/chip.png" alt="">
+          </div>
+        </div>
+        
+      </div>
+      <span id="settings" class="absolute right-0 grow-0 rounded-full h-8 w-8 bg-yellow-400 area" style="--area: settings"></span>
+    </div>
+  </div>
+  <div class="area border border-red-800" style="--area: bot1"></div>
+  <div class="area border border-white" style="--area: deck"></div>
+  <div class="area border border-red-500" style="--area: bot2"></div>
+  <div class="area border border-green-400" style="--area: player"></div>
 </body>
 </html>
+
+<!-- may be set "Score" relative to cards AREA an use top: 50% in order to center  -->
