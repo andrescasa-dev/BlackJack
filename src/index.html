@@ -40,15 +40,83 @@
             <img src="../assets/chip.png" alt="">
           </div>
         </div>
-        
       </div>
       <span id="settings" class="absolute right-0 grow-0 rounded-full h-8 w-8 bg-yellow-400 area" style="--area: settings"></span>
     </div>
   </div>
-  <div class="area border border-red-800" style="--area: bot1"></div>
-  <div class="area border border-white" style="--area: deck"></div>
-  <div class="area border border-red-500" style="--area: bot2"></div>
-  <div class="area border border-green-400" style="--area: player"></div>
+  <div class="flex justify-center items-center border border-white area" style="--area: deck">
+    <div class="cards flex justify-center " >
+      <div class="w-32 border">
+        <img class="rounded-lg" src="https://deckofcardsapi.com/static/img/2S.png"></img>
+      </div>
+      <div class="w-32 border ml-[-7.9rem] ">
+        <img class="rounded-lg" src="https://deckofcardsapi.com/static/img/2S.png"></img>
+      </div>
+      <div class="w-32 border ml-[-7.9rem] ">
+        <img class="rounded-lg" src="https://deckofcardsapi.com/static/img/2S.png"></img>
+      </div>
+      <div class="w-32 border ml-[-7.9rem] ">
+        <img class="rounded-lg" src="https://deckofcardsapi.com/static/img/2S.png"></img>
+      </div>
+      <div class="w-32 border ml-[-7.9rem] ">
+        <img class="rounded-lg" src="https://deckofcardsapi.com/static/img/2S.png"></img>
+      </div>
+    </div>
+  </div>
+  <div class="flex flex-col justify-center bg-blue-400 area layout" style="--area: bot1">
+      <div class="bot layout flex gap-2">
+        <div class="cards grid layout">
+          <div class="layout relative rouded bg-gray-600 h-10 w-14">
+          </div>
+          <div class="layout relative rouded bg-gray-600 h-10 w-14">
+          </div>
+          <div class="layout relative rouded bg-gray-600 h-10 w-14">
+          </div>
+        </div>
+        <div class="chips flex flex-col bg-red-400 justify-center items-center">
+          <div class="w-10 h-10 rounded-full bg-gray-400 m">
+            <img src="../assets/chip.png" alt="">
+          </div>
+          <div class="mt-[-1.5rem] w-10 h-10 rounded-full bg-gray-400">
+            <img src="../assets/chip.png" alt="">
+          </div>
+          <div class="mt-[-1.5rem] w-10 h-10 rounded-full bg-gray-400">
+            <img src="../assets/chip.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="score flex justify-center layout">
+        <span>5</span>
+    </div>
+  </div>
+  <div class=" flex flex-col justify-center bg-blue-400 area" style="--area: bot2">
+    <div class="flex flex-col justify-center bg-blue-400 area layout" style="--area: bot1">
+      <div class="bot layout flex flex-row-reverse gap-2">
+        <div class="cards grid layout">
+          <div class="layout relative rouded bg-gray-600 h-10 w-14">
+          </div>
+          <div class="layout relative rouded bg-gray-600 h-10 w-14">
+          </div>
+          <div class="layout relative rouded bg-gray-600 h-10 w-14">
+          </div>
+        </div>
+        <div class="chips flex flex-col bg-red-400 justify-center items-center">
+          <div class="w-10 h-10 rounded-full bg-gray-400 m">
+            <img src="../assets/chip.png" alt="">
+          </div>
+          <div class="mt-[-1.5rem] w-10 h-10 rounded-full bg-gray-400">
+            <img src="../assets/chip.png" alt="">
+          </div>
+          <div class="mt-[-1.5rem] w-10 h-10 rounded-full bg-gray-400">
+            <img src="../assets/chip.png" alt="">
+          </div>
+        </div>
+      </div>
+      <div class="score flex justify-center layout">
+        <span>5</span>
+    </div>
+  </div>
+  <div class=" border border-green-400 area" style="--area: player"></div>
 </body>
 </html>
 

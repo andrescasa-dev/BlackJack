@@ -90,11 +90,30 @@ meter {
   grid-template-columns: 0fr 1fr 0fr;
   grid-template-areas: 
   "cards cards settings"
-  ". chips chips";
+  "chips chips chips";
+}
+
+.center{
+  display: grid;
+  align-items: center;
+  justify-content: center;
 }
 
 .area{
   grid-area: var(--area);
+}
+
+.overflow{
+  max-width: none;
+  width: none;
+}
+
+.clip-img{
+  clip-path: inset(0% 80% 76% 0%);
+}
+
+.layout{
+  border: solid 1px white;
 }
 
 @media screen and (min-width: 1024px) {
