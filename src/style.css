@@ -118,12 +118,6 @@ meter {
 
 
 @media screen and (min-width: 1024px) {
-  .container{
-    grid-template-areas: 
-    "deck dealer dealer"
-    "bot1 . bot2"
-    "player player player"
-  }
 
   .cards img{
     width: 100%;
