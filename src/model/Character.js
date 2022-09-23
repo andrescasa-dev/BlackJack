@@ -2,6 +2,7 @@ export default class Character{
   #id;
   constructor(id){
     this.id = id;
+    this.cards = [];
   }
 }
 

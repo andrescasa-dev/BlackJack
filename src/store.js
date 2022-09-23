@@ -16,18 +16,22 @@ const initialState = {
     deck_id: undefined,
     remaining: undefined,
   },
-  characters: [
-    new Character('dealer'),
-    new Character('bot'),
-    new Character('bot2'),
-    new Character('player'),
-  ]
+  characters: {
+    dealer: new Character('dealer'),
+    bot1: new Character('bot'),
+    bot2: new Character('bot2'),
+    player: new Character('player'),
+  }
 }
 
 function gameReducer(state = initialState, action){
   switch(action.type){
     case 'UPDATE_DECK':
       return state = {...state, deck: action.payload.deck}
+    case 'UPDATE_CHARACTER':
+      const newCharacters = {...state.characters}
+      newCharacters[action.payload.id] = action.payload.character;
+      return state = {...state, characters: newCharacters}
     default:
       return state;
   }
