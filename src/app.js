@@ -1,8 +1,9 @@
+import getNewDeck from "./events/getNewDeck.js";
+
 class App{
   constructor(){
-    this.listeners();
+   getNewDeck();
   }
-  listeners();
 }
 
 new App();

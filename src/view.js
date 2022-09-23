@@ -1,0 +1,1 @@
+export const deck = document.querySelector('#deck')
