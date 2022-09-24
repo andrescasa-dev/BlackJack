@@ -4,7 +4,8 @@
 [video](https://www.youtube.com/watch?v=eyoh-Ku9TCI&ab_channel=wikiHow)
 
 # TO DO
-- [] in the GUI: Remove dealer's chips and in that place position the score
+- [ ] in the GUI: Remove dealer's chips and in that place position the score
+- [ ] characters as POO? 
 
 # API
 [Deck of cards](https://www.deckofcardsapi.com/)

@@ -1,4 +1,6 @@
-import Character from "./model/Character.js";
+import Bot from "./model/Bot.js";
+import Dealer from "./model/Dealer.js";
+import Player from "./model/Player.js";
 
 class Store{
   #reducer;
@@ -16,22 +18,25 @@ const initialState = {
     deck_id: undefined,
     remaining: undefined,
   },
-  characters: {
-    dealer: new Character('dealer'),
-    bot1: new Character('bot'),
-    bot2: new Character('bot2'),
-    player: new Character('player'),
-  }
+  characters: [
+    new Dealer('dealer'),
+    new Bot('bot', 1),
+    new Bot('bot', 2),
+    new Player('player'),
+  ]
 }
 
 function gameReducer(state = initialState, action){
   switch(action.type){
     case 'UPDATE_DECK':
       return state = {...state, deck: action.payload.deck}
+    case 'PATCH_DECK':
+      return state = {...state, deck: {...state.deck, ...action.payload.deck}}
     case 'UPDATE_CHARACTER':
-      const newCharacters = {...state.characters}
-      newCharacters[action.payload.id] = action.payload.character;
-      return state = {...state, characters: newCharacters}
+      const newCharacter = action.payload.character
+      const index = state.characters.findIndex(character => character.id === newCharacter.id)
+      const characters = [...state.characters.slice(0,index), newCharacter, ...state.characters.slice(index + 1)]
+      return state = {...state, characters}
     default:
       return state;
   }
