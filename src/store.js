@@ -20,9 +20,9 @@ const initialState = {
   },
   characters: [
     new Dealer('dealer'),
-    new Bot('bot', 1),
     new Bot('bot', 2),
     new Player('player'),
+    new Bot('bot', 1),
   ]
 }
 

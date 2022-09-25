@@ -21,15 +21,14 @@
   <div id="bot" class=" flex flex-col gap-4 justify-center area" style="--area: bot2">
   </div>
   <div class="  area " style="--area: player">
-    <div class="flex justify-around md:justify-center md:gap-8">
+    <div class="flex justify-around md:justify-center player-area md:gap-8">
       <div class="flex justify-center items-center">
-        <button class="bg-red-500 py-2 px-4 rounded-lg text-2xl">Hit</button>
+        <button id="btn_hit" class="disabled:opacity-40 bg-red-500 py-2 px-4 rounded-lg text-2xl">Hit</button>
       </div>
-      <div id="player" class="flex flex-col justify-between items-center">  
-        
+      <div id="player" class="flex flex-col justify-between items-center">   
       </div>
       <div class="flex justify-center items-center">
-        <button class="bg-red-500 py-2 px-4 rounded-lg text-2xl">Stay</button>
+        <button id="btn_stay" class=" disabled:opacity-40 bg-red-500 py-2 px-4 rounded-lg text-2xl">Stay</button>
       </div>
     </div>
   </div>
