@@ -7,11 +7,17 @@ export default class Character{
     this.id = id
     this.cards = []
     this.chips = []
-    this.score = 0
+    this.score;
   }
   async pushCard(){
     const cards = await getCards(1)
     this.cards = [...this.cards, cards[0]]
   }
-  
+  get score(){
+    return this.cards.reduce((score, card)=>{
+      let {value} = card
+      value = Number(value)
+      return score + (Number.isNaN(value) ? 10 : value);
+    },0)
+  }
 }

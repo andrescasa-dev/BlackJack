@@ -6,6 +6,8 @@
 # TO DO
 - [ ] in the GUI: Remove dealer's chips and in that place position the score
 - [ ] characters as POO? 
+- [ ] Me be one more object something like "contender"
+- [ ] Special values of A's in black Jack
 
 # API
 [Deck of cards](https://www.deckofcardsapi.com/)
@@ -24,7 +26,7 @@ El jugador no se puede pasar del score = 21, el objetivo es llegar a 21 o supera
 
 ## rules:
 
-1. bust => socre > 21
+1. bust => score > 21
 2. J,Q,K => 10
 3. A => 0 | 11
 
@@ -38,26 +40,3 @@ once all loop though all the player the dealer reveal their card
 
 1. dealer bust: every remaining players receives twice their bet
 2. dealer not bust: only the player who has more score than the dealer wins twice their bet.
-
-## objects
-
-state[
-  deck{
-    id
-    remaining-cards
-  }
-  characters=[]
-]
-
-character{
-  id
-  score
-  busted
-  cards = []
-  chips = []
-  display(); //chips and cards
-}
-
-character => players, dealers.
-
-new deck => one card to the dealer => show card
