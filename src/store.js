@@ -19,10 +19,10 @@ const initialState = {
     remaining: undefined,
   },
   characters: [
-    new Dealer('dealer'),
-    new Bot('bot', 2),
-    new Player('player'),
-    new Bot('bot', 1),
+    new Dealer(),
+    new Bot(2),
+    new Player(),
+    new Bot(1),
   ]
 }
 

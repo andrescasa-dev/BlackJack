@@ -3,7 +3,7 @@ export default function CardComponent({image, i, dealerHold}){
   const reverse = '../../assets/pngwing.com.png'
   return`
   <div class="max-w-[8rem] ${margin}">
-    <img class="rounded-lg" src="${dealerHold? reverse : image}"></img>
+    <img class="rounded-lg" src="${dealerHold ? reverse : image}"></img>
   </div>
   `
 }

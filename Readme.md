@@ -8,6 +8,7 @@
 - [ ] characters as POO? 
 - [ ] Me be one more object something like "contender"
 - [ ] Special values of A's in black Jack
+- [ ] What is the utility of "store" object in reducer patter? when to use that pattern?
 
 # API
 [Deck of cards](https://www.deckofcardsapi.com/)
