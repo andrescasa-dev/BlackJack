@@ -5,6 +5,7 @@ import Player from "./model/Player.js";
 import fetchDeck from "./utils/fetchDeck.js";
 import timeout from "./utils/timeout.js";
 import {player_btns} from "./view.js";
+const DELAY = 100
 
 class App{
   constructor(){
@@ -18,10 +19,11 @@ class App{
     this.bot1 = new Bot(1);
     this.bot2 = new Bot(2)
 
-    await this.initialBet(1000);
-    await this.initialCardPlacement(1000);
+    
+    await this.initialBet(DELAY);
+    await this.initialCardPlacement(DELAY);
 
-    timeout(1000)
+    timeout(DELAY)
     await this.botTurn(this.bot1)
 
     player_btns.forEach(btn => btn.classList.remove('hidden'));
@@ -33,45 +35,86 @@ class App{
       if(target.matches('#btn_hit')){
         if(this.player.status === 'free'){
           const card = await this.deck.getCardAsync() 
-          await this.deck.display(1000);
+          await this.deck.display(DELAY);
           await this.player.hit(card);
         }
         if(this.player.status !== 'free'){
           player_btns.forEach(btn => btn.disabled = true)
         }
         
-        if(this.player === 'full'){
+        if(this.player.status === 'full'){
           this.player.bet(['one', 'half'])
+          this.player.display(DELAY);
+          await this.continueTheGame()
         }
 
-        if(this.player === 'bust'){
+        if(this.player.status === 'bust'){
           this.player.loseBet();
-          this.player.display(1000);
+          this.player.display(DELAY);
+          await this.continueTheGame()
         }
       }
 
       if(target.matches('#btn_stay')){
-        await this.botTurn(this.bot2);
-        this.dealer.reveal = true;
-        this.dealer.display()
+        player_btns.forEach(btn => btn.disabled = true)
+        await this.continueTheGame()
       }
 
     })
+  }
+
+  async continueTheGame(){
+    await this.botTurn(this.bot2);
+    await this.dealerReveal();
   }
 
   async botTurn(bot){
     if(bot.status === 'free'){
       const card = await this.deck.getCardAsync();
         bot.hit(card)
-        await this.botTurn(bot)
-        await this.deck.display(1000)
+        if(bot.score <= 16) 
+          await this.botTurn(bot)
+        await this.deck.display(DELAY)
     }
     if(bot.status === 'full'){
       bot.bet(['one', 'half'])
+      bot.display(DELAY);
     }
     if(bot.status === 'bust'){
       bot.loseBet();
-      bot.display(1000);
+      bot.display(DELAY);
+    }
+  }
+
+  async dealerReveal(){
+    let winners;
+    let losers;
+    const remainingContenders = [this.bot1, this.player, this.bot2].filter(contender => contender.status === 'free');
+
+    this.dealer.reveal = true;
+    this.dealer.display()
+
+    if(this.dealer.score <= 16){
+      const card = await this.deck.getCardAsync();
+      this.dealer.hit(card);
+      await this.deck.display();
+      await this.dealerReveal();
+    }
+    else{
+      if(this.dealer.status === 'bust'){
+        winners = remainingContenders;
+      }
+      else{
+        winners = remainingContenders.filter( contender => contender.score > this.dealer.score)   
+        losers = remainingContenders.filter( contender => contender.score <= this.dealer.score)
+        losers.forEach( loser => loser.loseBet())
+      }
+      winners.forEach(contender => {
+        contender.bet([...contender.chips, ...contender.chips])        
+      })
+      for (const contender of remainingContenders) {
+        await contender.display();
+      }
     }
   }
   

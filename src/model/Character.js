@@ -4,7 +4,7 @@ export default class Character{
   constructor(){
     this.#score = 0;
     this.cards = []
-    this.#status = 'free';
+    this.#status = 'full';
   }
 
   addCard(card){

@@ -1,7 +1,7 @@
 import CardComponent from "./CardComponent.js";
 
 export default function DealerComponent(dealer){
-  const {score, cards} = dealer;
+  const {score, cards, status} = dealer;
   const htmlCards = cards.map((card, i) => CardComponent({
     ...card,
     i,
@@ -14,7 +14,7 @@ export default function DealerComponent(dealer){
     ${htmlCards}
   </div>
   <div class="flex justify-center">
-    <span>${score}</span>
+    <span>${score} : ${status}</span>
   </div> 
   `
 }

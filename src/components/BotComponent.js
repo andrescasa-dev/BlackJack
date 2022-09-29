@@ -6,7 +6,7 @@ export default function BotComponent(bot){
   const {cards, chips, score, index, status} = bot
   const miniCardsHTML = cards.map(card => MiniCardComponent(card)).join('');
   const cardsHTML = cards.map((card, i) => CardComponent({...card, i})).join('');
-  const chipsHTML = chips.map(chip => ChipComponent()).join('');
+  const chipsHTML = chips.map(chip => ChipComponent(chip)).join('');
   return `
   <div class="flex justify-center ${index % 2 === 0 ? 'flex-row-reverse' : ''} gap-2">
     <div class="md:hidden cards grid">
