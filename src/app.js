@@ -15,17 +15,16 @@ class App{
     this.deck = new Deck( await fetchDeck());
     this.dealer = new Dealer();
     this.player = new Player()
-    this.bots = [new Bot(1), new Bot(2)]
+    this.bot1 = new Bot(1);
+    this.bot2 = new Bot(2)
 
     await this.initialBet(1000);
     await this.initialCardPlacement(1000);
 
+    timeout(1000)
+    await this.botTurn(this.bot1)
+
     player_btns.forEach(btn => btn.classList.remove('hidden'));
-    
-    timeout(3000)
-    await this.executeBotTurn(this.bots[0], 1000)
-    await this.executeBotTurn(this.bots[0], 1000)
-    this.bots.pop();
   }
 
   listeners(){
@@ -34,33 +33,25 @@ class App{
       if(target.matches('#btn_hit')){
         if(this.player.status === 'free'){
           const card = await this.deck.getCardAsync() 
-          await this.player.hit(card);
           await this.deck.display(1000);
+          await this.player.hit(card);
         }
-        else player_btns.forEach(btn => btn.disabled = true)
-
+        if(this.player.status !== 'free'){
+          player_btns.forEach(btn => btn.disabled = true)
+        }
+        
         if(this.player === 'full'){
           this.player.bet(['one', 'half'])
         }
+
         if(this.player === 'bust'){
           this.player.loseBet();
+          this.player.display(1000);
         }
       }
 
       if(target.matches('#btn_stay')){
-        for (const bot of this.bots) {
-          if(bot.status === 'free'){
-            const card = await this.deck.getCardAsync() 
-            await bot.hit(card)
-            await this.deck.display(1000);
-          }
-          if(bot.status === 'full'){
-            bot.bet(['one', 'half'])
-          }
-          if(bot === 'bust'){
-            bot.loseBet();
-          }
-        }
+        await this.botTurn(this.bot2);
         this.dealer.reveal = true;
         this.dealer.display()
       }
@@ -68,8 +59,24 @@ class App{
     })
   }
 
+  async botTurn(bot){
+    if(bot.status === 'free'){
+      const card = await this.deck.getCardAsync();
+        bot.hit(card)
+        await this.botTurn(bot)
+        await this.deck.display(1000)
+    }
+    if(bot.status === 'full'){
+      bot.bet(['one', 'half'])
+    }
+    if(bot.status === 'bust'){
+      bot.loseBet();
+      bot.display(1000);
+    }
+  }
+  
   async initialCardPlacement(delay, i = 0){
-    const contenders = [this.bots[0], this.player, this.bots[1], this.dealer]
+    const contenders = [this.bot1, this.player, this.bot2, this.dealer]
     i++
     for (const contender of contenders) {
       const card = await this.deck.getCardAsync();
@@ -80,7 +87,7 @@ class App{
   }
 
   async initialBet(delay){ //could test if it works using foreach
-    const contenders = [this.bots[0], this.player, this.bots[1]]
+    const contenders = [this.bot1, this.player, this.bot2]
     for (const contender of contenders) {
       contender.bet(['one'])
       await contender.display(delay)

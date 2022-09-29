@@ -16,9 +16,9 @@
 
 ## Gameplay:
 
-1. cada jugador apuesta
-2. Mostrar un nuevo deck, dealer con carta descubierta
-3. repartir a cada jugador dos cartas descubiertas
+1. initial chip and cards placement
+2. all the contenders decide wether hit or stay
+3. dealer reveals the card and the winner is established
 
 Objective:
 

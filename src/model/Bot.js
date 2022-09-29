@@ -13,8 +13,6 @@ export default class Bot extends Contender{
     return this.#index;
   }
 
-
-
   async display(delay = 0){
     div_bot[this.index - 1].innerHTML = BotComponent(this)
     await timeout(delay)
