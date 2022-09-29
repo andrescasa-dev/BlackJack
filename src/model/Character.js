@@ -7,6 +7,15 @@ export default class Character{
     this.#status = 'free';
   }
 
+  addCard(card){
+    this.cards.push(card)
+  }
+
+  async hit(card, delay){
+    this.addCard(card)
+    await this.display(delay)
+  }
+
   get score(){
     return this.cards.reduce((score, {value})=>{
       return score + (isNaN(value) ? 10 : Number(value));

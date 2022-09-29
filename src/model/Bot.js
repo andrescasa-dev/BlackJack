@@ -1,3 +1,5 @@
+import BotComponent from "../components/BotComponent.js";
+import timeout from "../utils/timeout.js";
 import { div_bot } from "../view.js";
 import Contender from "./Contender.js";
 
@@ -11,8 +13,10 @@ export default class Bot extends Contender{
     return this.#index;
   }
 
-  hit(card){
-    console.log("bot's hit");
-    this.cards.push(card)
+
+
+  async display(delay = 0){
+    div_bot[this.index - 1].innerHTML = BotComponent(this)
+    await timeout(delay)
   }
 }

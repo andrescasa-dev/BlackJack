@@ -1,78 +1,90 @@
-import BotComponent from "./components/BotComponent.js";
-import DealerComponent from "./components/DealerComponent.js";
-import DeckComponent from "./components/DeckComponent.js";
-import PlayerComponent from "./components/PlayerComponent.js";
-import { executeBotsTurn, executePlayerTurn } from "./events/executeRound.js";
 import Bot from "./model/Bot.js";
 import Dealer from "./model/Dealer.js";
 import Deck from "./model/Deck.js";
 import Player from "./model/Player.js";
 import fetchDeck from "./utils/fetchDeck.js";
 import timeout from "./utils/timeout.js";
-import {div_bot, div_dealer, div_deck, div_player, player_btns} from "./view.js";
+import {player_btns} from "./view.js";
 
 class App{
   constructor(){
-    this.bindings();
     this.listeners();
     this.start();
   }
   async start(){
     this.deck = new Deck( await fetchDeck());
     this.dealer = new Dealer();
-    this.contenders = [new Player(), new Bot(2), new Bot(1)]
-    
-    div_deck.innerHTML = DeckComponent(this.deck);
-    this.dealer.placeCards(await this.deck.getCardsAsync(2));
-    div_dealer.innerHTML = DealerComponent(this.dealer);
-    const cards = await this.deck.getCardsAsync(this.contenders.length);
+    this.player = new Player()
+    this.bots = [new Bot(1), new Bot(2)]
 
-    const player = this.contenders[0]
-    player.hit(cards.pop())
-    div_player.innerHTML = PlayerComponent(player)
+    await this.initialBet(1000);
+    await this.initialCardPlacement(1000);
+
+    player_btns.forEach(btn => btn.classList.remove('hidden'));
     
-    this.contenders.slice(1).forEach(bot =>{
-      bot.hit(cards.pop())
-      div_bot[bot.index-1].innerHTML = BotComponent(bot)
-    });
-    
+    timeout(3000)
+    await this.executeBotTurn(this.bots[0], 1000)
+    await this.executeBotTurn(this.bots[0], 1000)
+    this.bots.pop();
   }
 
   listeners(){
     document.addEventListener('click', async (event)=>{
       const {target} = event;
       if(target.matches('#btn_hit')){
-        player_btns.forEach(btn => btn.disabled = true)
-        await this.executePlayerTurn(1000);
-        await this.executeBotsTurn(1000);
-        player_btns.forEach(btn => btn.disabled = false)
+        if(this.player.status === 'free'){
+          const card = await this.deck.getCardAsync() 
+          await this.player.hit(card);
+          await this.deck.display(1000);
+        }
+        else player_btns.forEach(btn => btn.disabled = true)
+
+        if(this.player === 'full'){
+          this.player.bet(['one', 'half'])
+        }
+        if(this.player === 'bust'){
+          this.player.loseBet();
+        }
       }
 
       if(target.matches('#btn_stay')){
-        await this.executeBotsTurn(1000);
+        for (const bot of this.bots) {
+          if(bot.status === 'free'){
+            const card = await this.deck.getCardAsync() 
+            await bot.hit(card)
+            await this.deck.display(1000);
+          }
+          if(bot.status === 'full'){
+            bot.bet(['one', 'half'])
+          }
+          if(bot === 'bust'){
+            bot.loseBet();
+          }
+        }
+        this.dealer.reveal = true;
+        this.dealer.display()
       }
+
     })
   }
 
-  bindings(){
-    this.executePlayerTurn = executePlayerTurn.bind(this)
-    this.executeBotsTurn = executeBotsTurn.bind(this)
+  async initialCardPlacement(delay, i = 0){
+    const contenders = [this.bots[0], this.player, this.bots[1], this.dealer]
+    i++
+    for (const contender of contenders) {
+      const card = await this.deck.getCardAsync();
+      contender.hit(card);
+      await this.deck.display(delay);
+    }
+    if( i === 1) await this.initialCardPlacement(delay, i)
   }
 
-  async displayPlayer(delay = 0){
-    div_player.innerHTML = PlayerComponent(this.contenders[0]);
-    await timeout(delay)
+  async initialBet(delay){ //could test if it works using foreach
+    const contenders = [this.bots[0], this.player, this.bots[1]]
+    for (const contender of contenders) {
+      contender.bet(['one'])
+      await contender.display(delay)
+    }
   }
-  
-  async displayDeck(delay = 0){
-    div_deck.innerHTML = DeckComponent(this.deck)
-    await timeout(delay)
-  }
-
-  async displayBot(bot, delay = 0){ //Promise.all could be necessary
-    div_bot[bot.index - 1].innerHTML = BotComponent(bot)
-    await timeout(delay)
-  }
-  
 }
 new App();

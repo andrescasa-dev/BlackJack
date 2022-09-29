@@ -1,4 +1,5 @@
 import CardComponent from "./CardComponent.js";
+import ChipComponent from "./ChipComponent.js";
 
 export default function PlayerComponent(player){
   const {cards, chips, score, status} = player

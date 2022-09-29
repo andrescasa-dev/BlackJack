@@ -1,4 +1,7 @@
+import DeckComponent from "../components/DeckComponent.js";
 import { BASE_URL_DECK_API } from "../utils/constants.js"
+import timeout from "../utils/timeout.js";
+import { div_deck } from "../view.js";
 
 export default class Deck{
   constructor(deck){
@@ -19,5 +22,10 @@ export default class Deck{
     const data = await response.json(); 
     this.remaining = data.remaining;
     return data.cards;
+  }
+
+  async display(delay = 0){
+    div_deck.innerHTML = DeckComponent(this)
+    await timeout(delay)
   }
 }

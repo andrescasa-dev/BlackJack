@@ -7,11 +7,15 @@ export default class Contender extends Character {
     this.#chips = []
   }
 
-  bet(){
-    this.#chips.push('one');
+  bet(chips){
+    this.#chips = [...this.#chips, ...chips];
   }
 
-  hit(card){
+  loseBet(){
+    this.#chips = [];
+  }
+
+  addCard(card){
     this.cards.push(card)
   }
 
