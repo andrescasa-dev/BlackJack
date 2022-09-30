@@ -1,9 +1,14 @@
-export default function CardComponent({image, i, backFace}){
-  const margin = i > 0 ? 'mr-[-6.5rem]' : ''
-  const reverse = '../../assets/pngwing.com.png'
-  return`
-  <div class="max-w-[8rem] ${margin}">
-    <img class="rounded-lg" src="${backFace ? reverse : image}"></img>
+export default function CardComponent({image, isBackwards, isRotated}){
+  
+  const reverse = isBackwards && '<img class="card" src="../../assets/backward.png" alt="">'
+
+  const rotateCardHTML = isRotated && `
+  <div class="card-rotate before:bg-[url(${image})]">
   </div>
   `
+  const normalCard = `
+  <img class="card" src="${image}" alt="">
+  `
+  const html = reverse || rotateCardHTML || normalCard;
+  return html
 }

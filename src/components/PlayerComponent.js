@@ -3,16 +3,16 @@ import ChipComponent from "./ChipComponent.js";
 
 export default function PlayerComponent(player){
   const {cards, chips, score, status} = player
-  const cardsHTML = cards.map((card, i) => CardComponent({...card, i})).join('')
+  const cardsHTML = cards.map(card => CardComponent(card)).join('')
   const chipsHTML = chips.map(chip => ChipComponent(chip)).join('');
   return `
   <div class="flex justify-center">
     ${chipsHTML}
   </div>
   <div>
-    <span>${score} : ${status}</span>
+    <p><span class="font-semibold">${score}</span> ${status}</p>
   </div>
-  <div class="cards flex flex-row-reverse justify-center " >
+  <div class="cards_container" >
     ${cardsHTML}
   </div>  
   `

@@ -4,32 +4,38 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
   <script src="app.js" type="module" defer></script>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="style.css">
-  <title>BlackJack</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@600;700&display=swap" rel="stylesheet">
+  <title>Document</title>
 </head>
-<body id="container" class="container grid grid-cols-3 grid-rows-3 h-screen bg-indigo-900 text-white font-sans text-2xl">
-  <span id="settings" class="absolute right-0 grow-0 rounded-full h-8 w-8 bg-yellow-400 area" style="--area: settings"></span>
-  <div id="dealer" class="grid justify-center text-center area" style="--area: dealer">        
+<body class="grid grid-cols-3 grid-rows-3 h-screen bg-[#0C0059] text-white text-blue-200 font-['Blinker', sans-serif]">
+  <div></div>
+  <div id="dealer" class="flex flex-col gap-1 justify-end p-2 text-center">      
   </div>
-  <div id="deck" class="relative flex items-center justify-center area" style="--area: deck">
+  <div></div>
+  <div id="bot" class="flex flex-col gap-4 justify-center" >
   </div>
-  <div id="bot" class="flex flex-col gap-4 justify-center area" style="--area: bot1">
+  <div id="deck" class="relative flex items-center justify-center" >
   </div>
-  <div id="bot" class=" flex flex-col gap-4 justify-center area" style="--area: bot2">
+  <div id="bot" class=" flex flex-col gap-4 justify-center" >
   </div>
-  <div class="  area " style="--area: player">
-    <div class="flex justify-around md:justify-center player-area md:gap-8">
+  <div></div>
+  <div>
+    <div class="flex justify-around md:justify-center md:gap-8">
       <div class="flex justify-center items-center">
-        <button id="btn_hit" class="hidden disabled:opacity-40 bg-red-500 py-2 px-4 rounded-lg text-2xl">Hit</button>
+        <button id="btn_hit" class="disabled:opacity-40 bg-red-500 py-1 px-8 rounded-lg text-white text-2xl">Hit</button>
       </div>
       <div id="player" class="flex flex-col justify-between items-center">   
       </div>
       <div class="flex justify-center items-center">
-        <button id="btn_stay" class="hidden disabled:opacity-40 bg-red-500 py-2 px-4 rounded-lg text-2xl">Stay</button>
+        <button id="btn_stay" class="disabled:opacity-40 bg-red-500 py-1 px-8 rounded-lg text-white text-2xl">Stay</button>
       </div>
     </div>
   </div>
+  <div></div>
 </body>
 </html>
