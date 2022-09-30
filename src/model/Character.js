@@ -17,9 +17,22 @@ export default class Character{
   }
 
   get score(){
-    return this.cards.reduce((score, {value})=>{
-      return score + (isNaN(value) ? 10 : Number(value));
-    },0)
+
+    const numValues = this.cards.map(({value})=>{
+      let number;
+      if(isNaN(value)){
+        number = value === 'ACE' ? 11 : 10;
+      }
+      else{
+        number = Number(value);
+      } 
+      return number;
+    })
+    const noAces = numValues.filter(value => value < 11);
+    const aces = numValues.filter(value => value === 11);
+    let sum = noAces.reduce((acc, curr) => { return acc + curr},0);
+    if(sum < 11 && aces.length > 0) sum += 11;
+    return sum;
   }
 
   get status(){

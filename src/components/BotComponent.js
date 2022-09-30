@@ -15,7 +15,7 @@ export default function BotComponent(bot){
     <div class="hidden md:flex cards-rotate-container">
      ${cardsHTML}
     </div>
-    <div class="chips flex flex-col  justify-center items-center">
+    <div class="chips flex flex-col items-center min-h-[3.65rem] min-w-[3.65rem] justify-center items-center">
       ${chipsHTML}
     </div>
   </div>

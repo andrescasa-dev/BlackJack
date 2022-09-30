@@ -12,7 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Blinker:wght@600;700&display=swap" rel="stylesheet">
   <title>Document</title>
 </head>
-<body class="grid grid-cols-3 grid-rows-3 h-screen bg-[#0C0059] text-white text-blue-200 font-['Blinker', sans-serif]">
+<body class="grid py-[5vh] grid-cols-3 grid-rows-3 h-screen bg-[#0C0059] text-white text-blue-200 font-['Blinker', sans-serif]">
   <div></div>
   <div id="dealer" class="flex flex-col gap-1 justify-end p-2 text-center">      
   </div>
@@ -24,16 +24,14 @@
   <div id="bot" class=" flex flex-col gap-4 justify-center" >
   </div>
   <div></div>
-  <div>
-    <div class="flex justify-around md:justify-center md:gap-8">
-      <div class="flex justify-center items-center">
-        <button id="btn_hit" class="disabled:opacity-40 bg-red-500 py-1 px-8 rounded-lg text-white text-2xl">Hit</button>
-      </div>
-      <div id="player" class="flex flex-col justify-between items-center">   
-      </div>
-      <div class="flex justify-center items-center">
-        <button id="btn_stay" class="disabled:opacity-40 bg-red-500 py-1 px-8 rounded-lg text-white text-2xl">Stay</button>
-      </div>
+  <div id="player-area" class="flex justify-around md:justify-center md:gap-8">
+    <div class="flex justify-center items-center">
+      <button id="btn_hit" class="hidden disabled:opacity-40 bg-red-500 py-1 px-8 rounded-lg text-white text-2xl">Hit</button>
+    </div>
+    <div id="player" class="flex flex-col gap-2 items-center">   
+    </div>
+    <div class="flex justify-center items-center">
+      <button id="btn_stay" class="hidden disabled:opacity-40 bg-red-500 py-1 px-8 rounded-lg text-white text-2xl">Stay</button>
     </div>
   </div>
   <div></div>

@@ -6,7 +6,7 @@ export default function PlayerComponent(player){
   const cardsHTML = cards.map(card => CardComponent(card)).join('')
   const chipsHTML = chips.map(chip => ChipComponent(chip)).join('');
   return `
-  <div class="flex justify-center">
+  <div class="flex justify-center items-center min-h-[3.65rem] min-w-[3.65rem]">
     ${chipsHTML}
   </div>
   <div>
