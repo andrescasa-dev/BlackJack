@@ -17,7 +17,6 @@ export default class Character{
   }
 
   get score(){
-
     const numValues = this.cards.map(({value})=>{
       let number;
       if(isNaN(value)){
@@ -28,6 +27,7 @@ export default class Character{
       } 
       return number;
     })
+    if(this.#status === 'hidden') return numValues[0];
     const noAces = numValues.filter(value => value < 11);
     const aces = numValues.filter(value => value === 11);
     let sum = noAces.reduce((acc, curr) => { return acc + curr},0);
@@ -36,8 +36,13 @@ export default class Character{
   }
 
   get status(){
+    if(this.#status === 'hidden') return this.#status
     if(this.score === 21) this.#status = 'full'
     if(this.score > 21) this.#status = 'bust'
     return this.#status
+  }
+
+  set status(newStatus){
+    this.#status = newStatus;
   }
 }

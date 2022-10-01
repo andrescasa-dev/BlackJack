@@ -5,8 +5,8 @@ import Character from "./Character.js";
 
 export default class Dealer extends Character{
   constructor(){
-    super();
-    this.reveal = false;
+    super();    
+    this.status = 'hidden'
   }
 
   display(delay){

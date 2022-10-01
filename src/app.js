@@ -91,7 +91,7 @@ class App{
     let losers;
     const remainingContenders = [this.bot1, this.player, this.bot2].filter(contender => contender.status === 'free');
 
-    this.dealer.reveal = true;
+    this.dealer.status = 'free';
     this.dealer.display()
 
     if(this.dealer.score <= 16){

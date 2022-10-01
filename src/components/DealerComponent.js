@@ -4,7 +4,7 @@ export default function DealerComponent(dealer){
   const {score, cards, status} = dealer;
   const htmlCards = cards.map((card, i) => CardComponent({
     ...card,
-    isBackwards: i === 1 && !dealer.reveal,
+    isBackwards: i === 1 && status === 'hidden',
   })).join('');
 
   return  `
